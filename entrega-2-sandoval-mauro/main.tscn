@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bq1umeno26qic"]
+[gd_scene load_steps=5 format=3 uid="uid://bq1umeno26qic"]
 
-[ext_resource type="Texture2D" uid="uid://bh0g57j180qjx" path="res://assets/background.png" id="1_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://yu7wxfv6ebma" path="res://assets/textures/background.png" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://btqduti83axuo" path="res://entities/player.tscn" id="1_ig7tw"]
-[ext_resource type="Texture2D" uid="uid://b7ebrrxc8mslc" path="res://assets/floor.png" id="2_h2yge"]
+[ext_resource type="Texture2D" uid="uid://mgn7brd6h43e" path="res://assets/textures/floor.png" id="2_lquwl"]
+[ext_resource type="Texture2D" uid="uid://d3olwf8p4ginw" path="res://assets/textures/player.png" id="4_1bvp3"]
 
 [node name="Main" type="Node"]
 
@@ -12,13 +13,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_0xm2m")
+texture = ExtResource("1_1bvp3")
 
 [node name="floor" type="TextureRect" parent="."]
 offset_top = 364.0
 offset_right = 1152.0
 offset_bottom = 648.0
-texture = ExtResource("2_h2yge")
+texture = ExtResource("2_lquwl")
 
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
 position = Vector2(540, 343)
+texture = ExtResource("4_1bvp3")
