@@ -2,10 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://yu7wxfv6ebma" path="res://assets/textures/background.png" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://btqduti83axuo" path="res://entities/player.tscn" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://dmu4irn27fhos" path="res://main.gd" id="1_lquwl"]
 [ext_resource type="Texture2D" uid="uid://mgn7brd6h43e" path="res://assets/textures/floor.png" id="2_lquwl"]
-[ext_resource type="Texture2D" uid="uid://d3olwf8p4ginw" path="res://assets/textures/player.png" id="4_1bvp3"]
 
 [node name="Main" type="Node"]
+script = ExtResource("1_lquwl")
 
 [node name="Background" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -23,4 +24,3 @@ texture = ExtResource("2_lquwl")
 
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
 position = Vector2(540, 343)
-texture = ExtResource("4_1bvp3")
