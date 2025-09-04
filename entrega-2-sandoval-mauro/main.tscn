@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bq1umeno26qic"]
+[gd_scene load_steps=6 format=3 uid="uid://bq1umeno26qic"]
 
 [ext_resource type="Texture2D" uid="uid://yu7wxfv6ebma" path="res://assets/textures/background.png" id="1_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://btqduti83axuo" path="res://entities/player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://btqduti83axuo" path="res://entities/player/player.tscn" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://dmu4irn27fhos" path="res://main.gd" id="1_lquwl"]
 [ext_resource type="Texture2D" uid="uid://mgn7brd6h43e" path="res://assets/textures/floor.png" id="2_lquwl"]
+[ext_resource type="PackedScene" uid="uid://cd8gj7no42usn" path="res://entities/enemies/turret.tscn" id="5_lquwl"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_lquwl")
@@ -24,3 +25,5 @@ texture = ExtResource("2_lquwl")
 
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
 position = Vector2(540, 343)
+
+[node name="Turret" parent="." instance=ExtResource("5_lquwl")]
