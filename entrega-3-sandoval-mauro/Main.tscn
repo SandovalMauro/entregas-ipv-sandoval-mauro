@@ -1,16 +1,27 @@
-[gd_scene load_steps=7 format=3 uid="uid://dnc5muoeyfwah"]
+[gd_scene load_steps=11 format=3 uid="uid://dnc5muoeyfwah"]
 
-[ext_resource type="PackedScene" path="res://entities/player/Player.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://r3pavp7kyq1h" path="res://entities/player/Player.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://cwss7yl8udbui" path="res://assets/textures/background.png" id="2"]
 [ext_resource type="Script" uid="uid://bkmvt4ya2xfm8" path="res://Main.gd" id="3"]
 [ext_resource type="PackedScene" uid="uid://bscjwoaotlcqc" path="res://entities/enemies/Turret.tscn" id="4"]
 [ext_resource type="Script" uid="uid://ertnqm8kd3lw" path="res://entities/enemies/TurretsSpawner.gd" id="5"]
-[ext_resource type="Texture2D" uid="uid://dwg3vpmlm24nh" path="res://assets/textures/floor.png" id="6"]
+[ext_resource type="PackedScene" uid="uid://b173lyppngfap" path="res://entities/world/floor.tscn" id="6_3dxm6"]
+[ext_resource type="Texture2D" uid="uid://j14wrxanwhni" path="res://assets/textures/player.png" id="7_lgr22"]
+[ext_resource type="Texture2D" uid="uid://c1umtbyikidk0" path="res://assets/textures/turret.png" id="7_trn2v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_03owx"]
+size = Vector2(32, 245)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lgr22"]
+size = Vector2(34, 64)
 
 [node name="Main" type="Node"]
 script = ExtResource("3")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Background" type="TextureRect" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -19,12 +30,113 @@ expand_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("1")]
 position = Vector2(413.003, 395.272)
+JUMP_SPEED = -500.0
+GRAVITY = 10.0
 
-[node name="Floor" type="Sprite2D" parent="."]
-position = Vector2(400, 513.5)
-scale = Vector2(12.1212, 2.62121)
-texture = ExtResource("6")
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(-1, 0)
 
 [node name="TurretsSpawner" type="Node" parent="."]
 script = ExtResource("5")
 turret_scene = ExtResource("4")
+
+[node name="Floor" parent="." instance=ExtResource("6_3dxm6")]
+position = Vector2(400, 537)
+
+[node name="Floor2" parent="." instance=ExtResource("6_3dxm6")]
+position = Vector2(1200, 537)
+
+[node name="Floor3" parent="." instance=ExtResource("6_3dxm6")]
+position = Vector2(2000, 537)
+
+[node name="Floor4" parent="." instance=ExtResource("6_3dxm6")]
+position = Vector2(2000, 537)
+
+[node name="Floor5" parent="." instance=ExtResource("6_3dxm6")]
+position = Vector2(1537, 407)
+
+[node name="Floor6" parent="." instance=ExtResource("6_3dxm6")]
+position = Vector2(1354, 437)
+rotation = 0.261799
+
+[node name="Wall" type="StaticBody2D" parent="."]
+position = Vector2(17, 305)
+
+[node name="Sprite2D" type="Sprite2D" parent="Wall"]
+scale = Vector2(1, 3.76923)
+texture = ExtResource("7_trn2v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_03owx")
+
+[node name="Wall2" type="StaticBody2D" parent="."]
+position = Vector2(2383, 306)
+
+[node name="Sprite2D" type="Sprite2D" parent="Wall2"]
+scale = Vector2(1, 3.76923)
+texture = ExtResource("7_trn2v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_03owx")
+
+[node name="Cube" type="RigidBody2D" parent="."]
+position = Vector2(173, 194)
+
+[node name="Sprite2D" type="Sprite2D" parent="Cube"]
+scale = Vector2(0.53125, 1)
+texture = ExtResource("7_lgr22")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cube"]
+shape = SubResource("RectangleShape2D_lgr22")
+
+[node name="Cube2" type="RigidBody2D" parent="."]
+position = Vector2(194, 287)
+
+[node name="Sprite2D" type="Sprite2D" parent="Cube2"]
+scale = Vector2(0.53125, 1)
+texture = ExtResource("7_lgr22")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cube2"]
+shape = SubResource("RectangleShape2D_lgr22")
+
+[node name="Cube3" type="RigidBody2D" parent="."]
+position = Vector2(220, 369)
+
+[node name="Sprite2D" type="Sprite2D" parent="Cube3"]
+scale = Vector2(0.53125, 1)
+texture = ExtResource("7_lgr22")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cube3"]
+shape = SubResource("RectangleShape2D_lgr22")
+
+[node name="Cube4" type="RigidBody2D" parent="."]
+position = Vector2(744, 340)
+
+[node name="Sprite2D" type="Sprite2D" parent="Cube4"]
+scale = Vector2(0.53125, 1)
+texture = ExtResource("7_lgr22")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cube4"]
+shape = SubResource("RectangleShape2D_lgr22")
+
+[node name="Cube5" type="RigidBody2D" parent="."]
+position = Vector2(704, 390)
+
+[node name="Sprite2D" type="Sprite2D" parent="Cube5"]
+scale = Vector2(0.53125, 1)
+texture = ExtResource("7_lgr22")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cube5"]
+shape = SubResource("RectangleShape2D_lgr22")
+
+[node name="Cube6" type="RigidBody2D" parent="."]
+position = Vector2(705, 315)
+
+[node name="Sprite2D" type="Sprite2D" parent="Cube6"]
+scale = Vector2(0.53125, 1)
+texture = ExtResource("7_lgr22")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cube6"]
+shape = SubResource("RectangleShape2D_lgr22")
