@@ -84,6 +84,8 @@ func _physics_process(_delta: float) -> void:
 		## y usamos la dirección a la que se casteó el raycast
 		## Otra manera sería hacer (target.global_position - global_position).x < 0
 		body_anim.flip_h = raycast.target_position.x < 0
+		
+func _apply_movement():
 	move_and_slide()
 
 
