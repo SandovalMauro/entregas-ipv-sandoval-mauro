@@ -2,8 +2,15 @@ extends TurretState
 
 
 func enter() -> void:
-	pass
+	character._play_animation(&"dead")
+	character.dead = true
+	character.collision_layer = 0
+	character.collision_mask = 0
 	
+	if character.target != null:
+		character._play_animation(&"die_alert")
+	else:
+		character._play_animation(&"die")
 
 # Limpia el estado. Por ej, reiniciar valores de variables o detener timers
 func exit() -> void:
@@ -22,9 +29,5 @@ func update(delta: float) -> void:
 
 # Callback cuando finaliza una animación en tiempo del estado actual
 func _on_animation_finished(anim_name: StringName) -> void:
-	pass
-
-
-# Callback genérico para eventos manejados como strings.
-func handle_event(event: StringName, value = null) -> void:
-	pass
+	if anim_name in [&"die_alert", &"die"]:
+		character._remove()

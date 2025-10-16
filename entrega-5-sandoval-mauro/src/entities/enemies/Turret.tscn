@@ -20,7 +20,6 @@ radius = 192.0
 [node name="Turret" type="CharacterBody2D"]
 texture_filter = 1
 collision_layer = 4
-collision_mask = 5
 script = ExtResource("2")
 projectile_scene = ExtResource("3")
 
@@ -40,6 +39,9 @@ one_shot = true
 
 [node name="Walk" type="Node" parent="StateMachine"]
 script = ExtResource("5_tcn5k")
+speed = 10.0
+max_speed = 60.0
+wander_radius = Vector2(100, 100)
 state_id = "walk"
 
 [node name="Alert" type="Node" parent="StateMachine"]
@@ -49,10 +51,6 @@ state_id = "alert"
 [node name="Die" type="Node" parent="StateMachine"]
 script = ExtResource("7_njpiu")
 state_id = "die"
-
-[node name="FireTimer" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
 
 [node name="FirePosition" type="Marker2D" parent="."]
 position = Vector2(0, -18.0339)
@@ -68,6 +66,7 @@ shape = SubResource("1")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(0.0428963, -18.0659)
+enabled = false
 target_position = Vector2(0, 0)
 collision_mask = 3
 
@@ -86,7 +85,8 @@ texture = ExtResource("5")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("2")
 
+[connection signal="hit" from="." to="StateMachine" method="notify_hit"]
 [connection signal="timeout" from="StateMachine/Idle/IdleTimer" to="StateMachine/Idle" method="_on_idle_timer_timeout"]
-[connection signal="animation_finished" from="Body" to="." method="_on_animation_finished"]
-[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
-[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
+[connection signal="animation_finished" from="Body" to="StateMachine" method="_on_body_animation_finished"]
+[connection signal="body_entered" from="DetectionArea" to="StateMachine" method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="StateMachine" method="_on_detection_area_body_exited"]
